@@ -19,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="mytheme">
       <body className={inter.className}>
-        <ThirdwebProvider>{children}</ThirdwebProvider>
+        {/* <ThirdwebProvider> */}
+          {children}
+        {/* </ThirdwebProvider> */}
       </body>
     </html>
   );

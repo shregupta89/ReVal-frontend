@@ -16,6 +16,7 @@ const config: Config = {
         mytheme: {
           "primary": "#3BB77E",//primaary
           "primary-content":"#c8ecdc",//banner light green
+          "error":"#FDE0E9",
           "secondary": "#F2FCE4",//cake and milk burger bg
           "accent": "#FF8C42",// chatgpt suggested 
           "neutral": "#5A5A5A",// chatgpt suggested
