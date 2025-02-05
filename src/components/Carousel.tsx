@@ -1,5 +1,5 @@
 import Image from "next/image"
-
+import Link from "next/link";
 export default function Carousel({Images}:{Images:string[]}){
     return(
         <>
@@ -35,10 +35,10 @@ export default function Carousel({Images}:{Images:string[]}){
             </div> */}
             </div>
             <div className="flex w-full justify-center gap-2 py-2">
-            <a href="#item1" className="btn btn-xs">1</a>
-            <a href="#item2" className="btn btn-xs">2</a>
-            <a href="#item3" className="btn btn-xs">3</a>
-            <a href="#item4" className="btn btn-xs">4</a>
+            <Link href="#item1" className="btn btn-xs">1</Link>
+            <Link href="#item2" className="btn btn-xs">2</Link>
+            <Link href="#item3" className="btn btn-xs">3</Link>
+            <Link href="#item4" className="btn btn-xs">4</Link>
             </div>
         </>
     )
