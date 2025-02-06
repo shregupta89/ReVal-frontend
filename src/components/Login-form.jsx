@@ -19,12 +19,9 @@ export function LoginForm({
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const { toast } = useToast()
-  const [isClient, setIsClient] = useState(false)
-  const router = isClient ? useRouter() : null
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
+  // const [isClient, setIsClient] = useState(false)
+  // const router = isClient ? useRouter() : null
+  const router = useRouter()
 
   const submitForm = async (event) => {
     event.preventDefault()
@@ -37,27 +34,27 @@ export function LoginForm({
       return
     }
 
-    // try {
-    //   const response = await axios.post("/api/signin", { username, password })
-    //   if (response.data.error) {
-    //     toast({
-    //       title: "Error",
-    //       description: response.data.error,
-    //       action: <ToastAction altText="Try again">Try again</ToastAction>,
-    //     })
-    //   } else {
-    //     setEmail(response.data.email)
-    //     setFirstname(response.data.firstname)
-    //     setLastname(response.data.lastname)
-    //     router.push("/dashboard")
-    //   }
-    // } catch (error) {
-    //   toast({
-    //     title: "Error",
-    //     description: error.message,
-    //     action: <ToastAction altText="Try again">Try again</ToastAction>,
-    //   })
-    // }
+    try {
+      const response = await axios.post("/login", { email:username, password })
+      if (!response.data.success) {
+        toast({
+          title: "Error",
+          description: response.data.message,
+          action: <ToastAction altText="Try again">Try again</ToastAction>,
+        })
+      } else {
+        setEmail(response.data.email)
+        setFirstname(response.data.firstname)
+        setLastname(response.data.lastname)
+        router.push("/dashboard")
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+    }
     console.log("handle submit function called");
     
   }
