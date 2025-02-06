@@ -5,14 +5,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-import {  useState ,useContext } from "react"
-
-import axios from "axios"
+import {  useState ,useContext, useEffect } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { ToastAction } from "@radix-ui/react-toast"
-import { UserContext } from "@/context/UserContext"
-import { useRouter } from "next/router"
+// import { useRouter } from "next/router"
 import Link from "next/link";
+import { useRouter } from "next/navigation"
 
 export function LoginForm({
   className,
@@ -23,7 +21,6 @@ export function LoginForm({
   const { toast } = useToast()
   const [isClient, setIsClient] = useState(false)
   const router = isClient ? useRouter() : null
-  const { setEmail, setFirstname, setLastname } = useContext(UserContext)
 
   useEffect(() => {
     setIsClient(true)
@@ -40,27 +37,29 @@ export function LoginForm({
       return
     }
 
-    try {
-      const response = await axios.post("/api/signin", { username, password })
-      if (response.data.error) {
-        toast({
-          title: "Error",
-          description: response.data.error,
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        })
-      } else {
-        setEmail(response.data.email)
-        setFirstname(response.data.firstname)
-        setLastname(response.data.lastname)
-        router.push("/dashboard")
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: error.message,
-        action: <ToastAction altText="Try again">Try again</ToastAction>,
-      })
-    }
+    // try {
+    //   const response = await axios.post("/api/signin", { username, password })
+    //   if (response.data.error) {
+    //     toast({
+    //       title: "Error",
+    //       description: response.data.error,
+    //       action: <ToastAction altText="Try again">Try again</ToastAction>,
+    //     })
+    //   } else {
+    //     setEmail(response.data.email)
+    //     setFirstname(response.data.firstname)
+    //     setLastname(response.data.lastname)
+    //     router.push("/dashboard")
+    //   }
+    // } catch (error) {
+    //   toast({
+    //     title: "Error",
+    //     description: error.message,
+    //     action: <ToastAction altText="Try again">Try again</ToastAction>,
+    //   })
+    // }
+    console.log("handle submit function called");
+    
   }
 
   return (
